@@ -46,4 +46,11 @@ public class Barco {
     public int getAnoFabric() {
         return anoFabric;
     }
+
+    @Override
+    public String toString() {
+        return  "matricula=" + matricula + "\n" +
+                ", eslora=" + eslora +
+                ", anoFabric=" + anoFabric;
+    }
 }
