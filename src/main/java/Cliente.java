@@ -34,4 +34,10 @@ public class Cliente {
     public String getDni() {
         return dni;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente " + name +
+                ", dni " + dni;
+    }
 }

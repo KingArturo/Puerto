@@ -58,8 +58,42 @@ public class Amarre {
         barco = enbarcacion;
     }
 
+    public void addDiasAlquiler(int dias) {
+        diasAlquiler = dias;
+    }
+
     public void addCliente(Cliente cliente) {
         client = cliente;
     }
 
+    public void addBarco(Barco enbarcacion) {
+        barco = enbarcacion;
+    }
+
+    public void removeDiasAlquilar() {
+        diasAlquiler = 0;
+    }
+
+    public void removeCliente() {
+        client = null;
+    }
+
+    public void removeBarco() {
+        barco = null;
+    }
+
+    @Override
+    public String toString() {
+        String aDevolver = "";
+        aDevolver += "Amarre numero " + numAmarre + "\n";
+        if(diasAlquiler==0) {
+            aDevolver += "No esta alquilado en este momento" + "\n";
+        }
+        else {
+            aDevolver += "Dias alquilados " + diasAlquiler + "\n";
+            aDevolver +=  client + "\n";
+            aDevolver += "Tipo de barco " + barco + "\n";
+        }
+        return aDevolver;
+    }
 }

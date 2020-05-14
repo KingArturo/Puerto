@@ -49,7 +49,7 @@ public class Barco {
 
     @Override
     public String toString() {
-        return  "matricula=" + matricula + "\n" +
+        return  "matricula=" + matricula +
                 ", eslora=" + eslora +
                 ", anoFabric=" + anoFabric;
     }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Puerto {
 
@@ -14,6 +15,7 @@ public class Puerto {
      */
     public Puerto() {
         amarres = new ArrayList<>();
+        amerresAlquilados = new ArrayList<>();
         addAmarre(4);
     }
 
@@ -46,6 +48,9 @@ public class Puerto {
         Amarre amarre = amarreDisponible();
         if(amarre != null) {
             amarres.remove(amarre);
+            amarre.addDiasAlquiler(numDias);
+            amarre.addCliente(client);
+            amarre.addBarco(barco);
             amerresAlquilados.add(amarre);
             precioAlquiler(numDias,barco);
             amarre.addCliente(client);
@@ -82,20 +87,50 @@ public class Puerto {
     /**
      * Comprueba si el amarre indicado por parametro está alquilado
      * y devuelve el precio del alquiler, si no devuelve -1
-     * @param numAmarre
      * @return
      */
     public int liquidarAlquilarAmarre(int numAmarre) {
         int precioAlquiler = -1;
+        boolean amarreAlquilado = false;
         for (Amarre amarre: amerresAlquilados) {
-            int num = amarre.getNumAmarre();
-            if(num == numAmarre) {
-                precioAlquiler(amarre.getDiasAlquiler(), amarre.getBarco());
+            if(amarre.getNumAmarre() == numAmarre) {
+                amarreAlquilado = true;
+            }
+            if(amarreAlquilado) {
                 amerresAlquilados.remove(amarre);
+                precioAlquiler = precioAlquiler(amarre.getDiasAlquiler(),amarre.getBarco());
+                amarre.removeDiasAlquilar();
+                amarre.removeBarco();
+                amarre.removeCliente();
                 amarres.add(amarre);
             }
         }
+        /**Iterator<Amarre> it = amerresAlquilados.iterator();
+        while(it.hasNext()) {
+            Amarre amarre = it.next();
+            if(numAmarre == amarre.getNumAmarre()) {
+                amerresAlquilados.remove(amarre);
+                precioAlquiler(amarre.getDiasAlquiler(),amarre.getBarco());
+                amarre.removeDiasAlquilar();
+                amarre.removeBarco();
+                amarre.removeCliente();
+                amarres.add(amarre);
+            }
+        }*/
+
+
         return precioAlquiler;
+    }
+
+    public String estadoDeLosAmarres() {
+        String estado = "";
+        for (Amarre amarre : amarres) {
+            estado += amarre.toString() + "\n";
+        }
+        for (Amarre amarre : amerresAlquilados) {
+            estado += amarre.toString() + "\n";
+        }
+        return estado;
     }
 
 }

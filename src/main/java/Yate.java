@@ -40,7 +40,7 @@ public class Yate extends BarcoDeportivo {
         String aDevolver = "";
         aDevolver += "Yate ";
         aDevolver += super.toString();
-        aDevolver += " número de camarotes " + numCamarotes;
+        aDevolver += " numero de camarotes " + numCamarotes;
         return aDevolver;
     }
 }
