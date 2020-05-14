@@ -19,4 +19,14 @@ public class Velero extends Barco {
         aDevolver += " número de Mastiles " + numMastiles;
         return aDevolver;
     }
+
+    /**
+     * Metodo que devuelve un número entero con
+     * el resultado de la suma del número de camarotes y
+     * el de la potencia.
+     * @return
+     */
+    public int calcularBernua() {
+        return numMastiles;
+    }
 }

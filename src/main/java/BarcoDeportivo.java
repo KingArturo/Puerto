@@ -19,5 +19,15 @@ public class BarcoDeportivo extends Barco {
         aDevolver += " potencia " + potencia;
         return aDevolver;
     }
+
+    /**
+     * Metodo que devuelve un número entero con
+     * el resultado de la suma del número de camarotes y
+     * el de la potencia.
+     * @return
+     */
+    public int calcularBernua() {
+        return potencia;
+    }
 }
 

@@ -54,4 +54,12 @@ public class Amarre {
         return diasAlquiler;
     }
 
+    public void addbarco(Barco enbarcacion) {
+        barco = enbarcacion;
+    }
+
+    public void addCliente(Cliente cliente) {
+        client = cliente;
+    }
+
 }
