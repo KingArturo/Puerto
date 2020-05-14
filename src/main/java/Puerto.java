@@ -39,21 +39,20 @@ public class Puerto {
      * Metodo que alquila el primer amarre libre y devuelve el precio
      * en caso de que no haya ninguno libre devuelve -1
      * @param numDias
-     * @param client
      * @param barco
      * @return
      */
-    public int alquilarAmarre(int numDias, Cliente client, Barco barco) {
+    public int alquilarAmarre(int numDias, Barco barco) {
         int precioAlquiler = -1;
         Amarre amarre = amarreDisponible();
         if(amarre != null) {
             amarres.remove(amarre);
             amarre.addDiasAlquiler(numDias);
-            amarre.addCliente(client);
+            amarre.addCliente(barco.getDueno());
             amarre.addBarco(barco);
             amerresAlquilados.add(amarre);
             precioAlquiler = precioAlquiler(numDias,barco);
-            amarre.addCliente(client);
+            amarre.addCliente(barco.getDueno());
         }
         return precioAlquiler;
     }
@@ -89,7 +88,7 @@ public class Puerto {
      * y devuelve el precio del alquiler, si no devuelve -1
      * @return
      */
-    public int liquidarAlquilar(int numAmarre) {
+    public int liquidarAlquilerAmarre(int numAmarre) {
         int precioAlquiler = -1;
         for (int i = 0; i < amerresAlquilados.size(); i++) {
             boolean amarreAlquilado = false;
@@ -106,23 +105,10 @@ public class Puerto {
                 amarres.add(amarre);
             }
         }
-        /**for (Amarre amarre : amerresAlquilados) {
-            if(amarre.getNumAmarre() == numAmarre) {
-                amarreAlquilado = true;
-            }
-            if(amarreAlquilado) {
-                amerresAlquilados.remove(amarre);
-                precioAlquiler = precioAlquiler(amarre.getDiasAlquiler(),amarre.getBarco());
-                amarre.removeDiasAlquilar();
-                amarre.removeBarco();
-                amarre.removeCliente();
-                amarres.add(amarre);
-            }
-        }*/
         return precioAlquiler;
     }
 
-    public String estadoDeLosAmarres() {
+    public String verEstadoAmarres() {
         String estado = "";
         for (Amarre amarre : amarres) {
             estado += amarre.toString() + "\n";

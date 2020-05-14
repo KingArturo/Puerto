@@ -11,8 +11,8 @@ public class Yate extends BarcoDeportivo {
      * @param potencia
      * @param numCamarotes
      */
-    public Yate(String matricula, int eslora, int anoFabric, int potencia, int numCamarotes) {
-        super(matricula, eslora, anoFabric, potencia);
+    public Yate(String matricula, double eslora, int anoFabric, Cliente propietario, int potencia, int numCamarotes) {
+        super(matricula, eslora, anoFabric, propietario, potencia);
         this.numCamarotes = numCamarotes;
     }
 
@@ -32,7 +32,7 @@ public class Yate extends BarcoDeportivo {
      * @return
      */
     public int calcularBernua() {
-        return (numCamarotes*super.getPotencia());
+        return (numCamarotes+super.getPotencia());
     }
 
     @Override

@@ -1,65 +1,58 @@
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class PuertoTest {
+public class PuertoTest
+{
     @Test
-    public void test01() {
-        Puerto puerto = new Puerto();
+    public void test1()
+    {
+        Cliente enrique = new Cliente("Enrique Iglesias", "71456456H");
+        Cliente juan = new Cliente("Juan Magan", "76233233K");
+        Cliente romeo = new Cliente("Romeo Santos", "72544544L");
+        Cliente jennifer = new Cliente("Jennifer Lopez", "9865865T");
+        Cliente marc = new Cliente("Marc Anthony", "9666777C");
 
-        Cliente cliente1 = new Cliente("Arturo", "1234Z");
-        Cliente cliente2 = new Cliente("Bayon", "1234Z");
-        Cliente cliente3 = new Cliente("Roberto", "1234Z");
+        Barco veleroEnrique = new Velero("DFT444", 23.5, 1996, enrique, 4);
+        Barco embarcacionAMotorJuan = new BarcoDeportivo("HJJ987", 45.2, 2002, juan, 1200);
+        Barco yateRomeo = new Yate("KIO123", 70.0, 2010, romeo, 1500, 15);
 
-        Barco barco1 = new Yate("236-C", 50, 2012, 1200, 35);
-        Barco barco2 = new BarcoDeportivo("236-C", 50, 2012, 1200);
-        Barco barco3 = new Velero("236-C", 50, 2012, 3);
+        Barco veleroJennifer = new Velero("LLL890", 12.8, 1997, jennifer, 5);
+        Barco yateMarc = new Yate("HOL332", 45.5, 2001, marc, 200, 21);
 
-        puerto.alquilarAmarre(100, cliente1,barco1);
-        puerto.alquilarAmarre(365, cliente2,barco2);
-        puerto.alquilarAmarre(30, cliente3,barco3);
+        Puerto miPuerto = new Puerto();
 
-        //System.out.println(puerto.estadoDeLosAmarres());
+        miPuerto.verEstadoAmarres();
 
-        assertEquals(puerto.estadoDeLosAmarres(), "Amarre numero 3\n" +
-                "No esta alquilado en este momento\n" +
-                "\n" +
-                "Amarre numero 0\n" +
-                "Dias alquilados 100\n" +
-                "Cliente Arturo, dni 1234Z\n" +
-                "Tipo de barco Yate Barco Deportivo matricula=236-C, eslora=50, anoFabric=2012 potencia 1200 numero de camarotes 35\n" +
-                "\n" +
-                "Amarre numero 1\n" +
-                "Dias alquilados 365\n" +
-                "Cliente Bayon, dni 1234Z\n" +
-                "Tipo de barco Barco Deportivo matricula=236-C, eslora=50, anoFabric=2012 potencia 1200\n" +
-                "\n" +
-                "Amarre numero 2\n" +
-                "Dias alquilados 30\n" +
-                "Cliente Roberto, dni 1234Z\n" +
-                "Tipo de barco Velero matricula=236-C, eslora=50, anoFabric=2012 numero de Mastiles 3\n" +
-                "\n");
+        //Primeros amarres
+        assertEquals(3550, miPuerto.alquilarAmarre(10, veleroEnrique),  0.0F);
+        assertEquals(362260, miPuerto.alquilarAmarre(5, embarcacionAMotorJuan),  0.0F);
+        assertEquals(455900, miPuerto.alquilarAmarre(2, yateRomeo), 0.0F);
+        miPuerto.verEstadoAmarres();
 
-        puerto.liquidarAlquilar(2);
+        //Se llena el puerto con el siguiente amarre
+        assertEquals(2780, miPuerto.alquilarAmarre(10, veleroJennifer), 0.0F);
+        miPuerto.verEstadoAmarres();
 
-        assertEquals(puerto.estadoDeLosAmarres(),
-                "Amarre numero 3\n" +
-                "No esta alquilado en este momento\n" +
-                "\n" +
-                "Amarre numero 2\n" +
-                "No esta alquilado en este momento\n" +
-                "\n" +
-                "Amarre numero 0\n" +
-                "Dias alquilados 100\n" +
-                "Cliente Arturo, dni 1234Z\n" +
-                "Tipo de barco Yate Barco Deportivo matricula=236-C, eslora=50, anoFabric=2012 potencia 1200 numero de camarotes 35\n" +
-                "\n" +
-                "Amarre numero 1\n" +
-                "Dias alquilados 365\n" +
-                "Cliente Bayon, dni 1234Z\n" +
-                "Tipo de barco Barco Deportivo matricula=236-C, eslora=50, anoFabric=2012 potencia 1200\n" +
-                "\n" );
-       //System.out.println(puerto.estadoDeLosAmarres());
+        //Se intenta alquilar un amarre pero no hay libres
+        assertEquals(-1, miPuerto.alquilarAmarre(3, yateMarc), 0.0F);
+        miPuerto.verEstadoAmarres();
+
+        //Se intenta terminar un alquiler de un amarre inexistente
+        assertEquals(-1, miPuerto.liquidarAlquilerAmarre(10), 0.0F);
+
+        //Se terminan los alquileres
+        assertEquals(3550, miPuerto.liquidarAlquilerAmarre(0), 0.0F);
+        assertEquals(362260, miPuerto.liquidarAlquilerAmarre(1), 0.0F);
+
+        //Se intenta liquidar un alquiler que ya no existe
+        assertEquals(-1, miPuerto.liquidarAlquilerAmarre(0), 0.0F);
+
+        //Marc alquila un amarre ahora que hay disponibles
+        assertEquals(67665, miPuerto.alquilarAmarre(3, yateMarc), 0.0F);
+
+        miPuerto.verEstadoAmarres();
     }
 
 }

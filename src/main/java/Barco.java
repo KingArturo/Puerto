@@ -3,9 +3,11 @@ public class Barco {
     //Matricula del barco
     private String matricula;
     //Longitud del barco
-    private int eslora;
+    private double eslora;
     //Año en el que el barco fue fabricado
     private int anoFabric;
+    //Dueño del barco
+    private Cliente dueno;
 
     /**
      * Constructor de la clase Barco que pide que introduccas
@@ -14,10 +16,11 @@ public class Barco {
      * @param eslora
      * @param anoFabric
      */
-    public Barco(String matricula, int eslora, int anoFabric) {
+    public Barco(String matricula, double eslora, int anoFabric, Cliente propietario) {
         this.matricula = matricula;
         this.eslora = eslora;
         this.anoFabric = anoFabric;
+        dueno = propietario;
     }
 
     /**
@@ -34,8 +37,12 @@ public class Barco {
      * la longitud del abrco.
      * @return
      */
-    public int getEslora() {
+    public double getEslora() {
         return eslora;
+    }
+
+    public Cliente getDueno() {
+        return dueno;
     }
 
     /**

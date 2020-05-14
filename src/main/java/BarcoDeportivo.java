@@ -2,8 +2,8 @@ public class BarcoDeportivo extends Barco {
 
     private int potencia;
 
-    public BarcoDeportivo(String matricula, int eslora, int anoFabric, int potencia) {
-        super(matricula, eslora, anoFabric);
+    public BarcoDeportivo(String matricula, double eslora, int anoFabric, Cliente propietario, int potencia) {
+        super(matricula, eslora, anoFabric, propietario);
         this.potencia = potencia;
     }
 
