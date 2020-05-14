@@ -79,4 +79,23 @@ public class Puerto {
         return precio;
     }
 
+    /**
+     * Comprueba si el amarre indicado por parametro está alquilado
+     * y devuelve el precio del alquiler, si no devuelve -1
+     * @param numAmarre
+     * @return
+     */
+    public int liquidarAlquilarAmarre(int numAmarre) {
+        int precioAlquiler = -1;
+        for (Amarre amarre: amerresAlquilados) {
+            int num = amarre.getNumAmarre();
+            if(num == numAmarre) {
+                precioAlquiler(amarre.getDiasAlquiler(), amarre.getBarco());
+                amerresAlquilados.remove(amarre);
+                amarres.add(amarre);
+            }
+        }
+        return precioAlquiler;
+    }
+
 }
