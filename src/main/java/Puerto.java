@@ -52,7 +52,7 @@ public class Puerto {
             amarre.addCliente(client);
             amarre.addBarco(barco);
             amerresAlquilados.add(amarre);
-            precioAlquiler(numDias,barco);
+            precioAlquiler = precioAlquiler(numDias,barco);
             amarre.addCliente(client);
         }
         return precioAlquiler;
@@ -89,10 +89,11 @@ public class Puerto {
      * y devuelve el precio del alquiler, si no devuelve -1
      * @return
      */
-    public int liquidarAlquilarAmarre(int numAmarre) {
+    public int liquidarAlquilar(int numAmarre) {
         int precioAlquiler = -1;
-        boolean amarreAlquilado = false;
-        for (Amarre amarre: amerresAlquilados) {
+        for (int i = 0; i < amerresAlquilados.size(); i++) {
+            boolean amarreAlquilado = false;
+            Amarre amarre = amerresAlquilados.get(i);
             if(amarre.getNumAmarre() == numAmarre) {
                 amarreAlquilado = true;
             }
@@ -105,20 +106,19 @@ public class Puerto {
                 amarres.add(amarre);
             }
         }
-        /**Iterator<Amarre> it = amerresAlquilados.iterator();
-        while(it.hasNext()) {
-            Amarre amarre = it.next();
-            if(numAmarre == amarre.getNumAmarre()) {
+        /**for (Amarre amarre : amerresAlquilados) {
+            if(amarre.getNumAmarre() == numAmarre) {
+                amarreAlquilado = true;
+            }
+            if(amarreAlquilado) {
                 amerresAlquilados.remove(amarre);
-                precioAlquiler(amarre.getDiasAlquiler(),amarre.getBarco());
+                precioAlquiler = precioAlquiler(amarre.getDiasAlquiler(),amarre.getBarco());
                 amarre.removeDiasAlquilar();
                 amarre.removeBarco();
                 amarre.removeCliente();
                 amarres.add(amarre);
             }
         }*/
-
-
         return precioAlquiler;
     }
 

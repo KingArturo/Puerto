@@ -21,7 +21,7 @@ public class PuertoTest {
 
         System.out.println(puerto.estadoDeLosAmarres());
 
-        puerto.liquidarAlquilarAmarre(0);
+        puerto.liquidarAlquilar(0);
 
        System.out.println(puerto.estadoDeLosAmarres());
     }
