@@ -16,7 +16,7 @@ public class Velero extends Barco {
         String aDevolver = "";
         aDevolver += "Velero ";
         aDevolver += super.toString();
-        aDevolver += " número de Mastiles " + numMastiles;
+        aDevolver += " numero de Mastiles " + numMastiles;
         return aDevolver;
     }
 
